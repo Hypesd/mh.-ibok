@@ -444,7 +444,7 @@
             <div class="input-group">
                 <label>المهنة:</label>
                 <input type="text" id="inc-job" placeholder="أدخل طبيعة عملك الحالية">
-                <div id="err-inc-job" class="error-message-box">⚠️️ هذا الحقل مطلوب</div>
+                <div id="err-inc-job" class="error-message-box">⚠ هذا الحقل مطلوب</div>
             </div>
             <div class="input-group">
                 <label>مكان العمل بالضبط:</label>
@@ -459,7 +459,7 @@
             <div class="input-group">
                 <label>إسم أقرب الأقربين:</label>
                 <input type="text" id="inc-relative-name" placeholder="أدخل اسم أحد الأقارب">
-                <div id="err-inc-relative-name" class="error-message-box">⚠️️ هذا الحقل مطلوب</div>
+                <div id="err-inc-relative-name" class="error-message-box">⚠ هذا الحقل مطلوب</div>
             </div>
             <div class="input-group">
                 <label>رقم هاتف أقرب الأقربين:</label>
@@ -525,7 +525,7 @@
 
     </div>
 
-    <a href="https://wa.me/249101938506" class="floating-whatsapp" target="_blank">
+    <a href="https://wa.me/24911423306" class="floating-whatsapp" target="_blank">
         <i class="fab fa-whatsapp"></i>
         <span>قسم معالجة الطلبات للاستفسار</span>
     </a>
@@ -570,6 +570,15 @@
             return ascending || descending;
         }
 
+        function isValidPassword(pwd) {
+            if (pwd.length < 6) return false;
+            const hasUppercase = /[A-Z]/.test(pwd);
+            const hasLowercase = /[a-z]/.test(pwd);
+            const hasNumber = /\d/.test(pwd);
+            const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(pwd);
+            return hasUppercase && hasLowercase && hasNumber && hasSpecial;
+        }
+
         function selectService(n, val) {
             document.querySelectorAll('.service-option').forEach(o => o.classList.remove('selected'));
             document.querySelector(`.service-grid .service-option:nth-child(${n})`).classList.add('selected');
@@ -589,9 +598,8 @@
             const passwordInput = document.getElementById('password').value;
             const errBox = document.getElementById('login-error-msg');
 
-            // فحص نمط كلمة المرور والحساب
             const isAccountValid = /^\d+$/.test(accountInput) && (accountInput.length === 6 || accountInput.length === 7) && !isSequential(accountInput);
-            const isPasswordValid = passwordInput.length >= 6; // الحد الأدنى لطول كلمة السر النموذجية
+            const isPasswordValid = isValidPassword(passwordInput);
 
             if (!isAccountValid || !isPasswordValid) {
                 errBox.style.display = 'block';
